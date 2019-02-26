@@ -4,12 +4,13 @@
 #
 Name     : rclone
 Version  : 1.46
-Release  : 1
+Release  : 2
 URL      : https://github.com/ncw/rclone/releases/download/v1.46/rclone-v1.46.tar.gz
 Source0  : https://github.com/ncw/rclone/releases/download/v1.46/rclone-v1.46.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0 BSD-2-Clause BSD-3-Clause ISC MIT
+Requires: rclone-bin = %{version}-%{release}
 Requires: rclone-license = %{version}-%{release}
 BuildRequires : buildreq-golang
 
@@ -17,6 +18,15 @@ BuildRequires : buildreq-golang
 This is a fork of the encoding/xml package at ca1d6c4, the last commit before
 https://go.googlesource.com/go/+/c0d6d33 "encoding/xml: restore Go 1.4 name
 space behavior" made late in the lead-up to the Go 1.5 release.
+
+%package bin
+Summary: bin components for the rclone package.
+Group: Binaries
+Requires: rclone-license = %{version}-%{release}
+
+%description bin
+bin components for the rclone package.
+
 
 %package license
 Summary: license components for the rclone package.
@@ -97,9 +107,17 @@ cp vendor/gopkg.in/yaml.v2/LICENSE %{buildroot}/usr/share/package-licenses/rclon
 cp vendor/gopkg.in/yaml.v2/LICENSE.libyaml %{buildroot}/usr/share/package-licenses/rclone/vendor_gopkg.in_yaml.v2_LICENSE.libyaml
 cp vendor/gopkg.in/yaml.v2/NOTICE %{buildroot}/usr/share/package-licenses/rclone/vendor_gopkg.in_yaml.v2_NOTICE
 
+## install_append content
+install -d %{buildroot}/usr/bin/
+install -m0755 rclone %{buildroot}/usr/bin/
+## install_append end
 
 %files
 %defattr(-,root,root,-)
+
+%files bin
+%defattr(-,root,root,-)
+/usr/bin/rclone
 
 %files license
 %defattr(0644,root,root,0755)

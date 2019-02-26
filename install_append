@@ -1,0 +1,2 @@
+install -d %{buildroot}/usr/bin/
+install -m0755 rclone %{buildroot}/usr/bin/
