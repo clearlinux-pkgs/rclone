@@ -1,2 +1,3 @@
 install -d %{buildroot}/usr/bin/
 install -m0755 rclone %{buildroot}/usr/bin/
+install -Dpm0644 ./rclone.1 %{buildroot}/usr/share/man/man1/rclone.1
