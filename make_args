@@ -1,1 +1,1 @@
-GOFLAGS='-buildmode=pie -v'
+GOFLAGS='-mod=vendor -buildmode=pie -v'

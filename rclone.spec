@@ -4,7 +4,7 @@
 #
 Name     : rclone
 Version  : 1.52.2
-Release  : 10
+Release  : 11
 URL      : https://github.com/rclone/rclone/releases/download/v1.52.2/rclone-v1.52.2.tar.gz
 Source0  : https://github.com/rclone/rclone/releases/download/v1.52.2/rclone-v1.52.2.tar.gz
 Summary  : rsync for cloud storage
@@ -52,17 +52,17 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1595022280
+export SOURCE_DATE_EPOCH=1595369173
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
 export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
-make  %{?_smp_mflags}  GOFLAGS='-buildmode=pie -v'
+make  %{?_smp_mflags}  GOFLAGS='-mod=vendor -buildmode=pie -v'
 
 
 %install
-export SOURCE_DATE_EPOCH=1595022280
+export SOURCE_DATE_EPOCH=1595369173
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/rclone
 cp %{_builddir}/rclone-v1.52.2/COPYING %{buildroot}/usr/share/package-licenses/rclone/8fb789d383906a5e83d6a74149e094f8d6921812
