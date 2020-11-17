@@ -4,7 +4,7 @@
 #
 Name     : rclone
 Version  : 1.52.3
-Release  : 14
+Release  : 15
 URL      : https://github.com/rclone/rclone/releases/download/v1.52.3/rclone-v1.52.3.tar.gz
 Source0  : https://github.com/rclone/rclone/releases/download/v1.52.3/rclone-v1.52.3.tar.gz
 Summary  : rsync for cloud storage
