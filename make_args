@@ -1,1 +1,1 @@
-GOFLAGS='-mod=vendor -buildmode=pie -v'
+-f Makefile GOFLAGS='-mod=vendor -buildmode=pie -v'
