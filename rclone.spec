@@ -4,7 +4,7 @@
 #
 Name     : rclone
 Version  : 1.53.4
-Release  : 19
+Release  : 20
 URL      : https://github.com/rclone/rclone/releases/download/v1.53.4/rclone-v1.53.4.tar.gz
 Source0  : https://github.com/rclone/rclone/releases/download/v1.53.4/rclone-v1.53.4.tar.gz
 Source1  : http://localhost/cgit/projects/rclone-vendor/snapshot/rclone-vendor-1.53.3.1.tar.xz
