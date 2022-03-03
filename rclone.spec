@@ -4,7 +4,7 @@
 #
 Name     : rclone
 Version  : 1.56.2
-Release  : 37
+Release  : 38
 URL      : https://github.com/rclone/rclone/releases/download/v1.56.2/rclone-v1.56.2.tar.gz
 Source0  : https://github.com/rclone/rclone/releases/download/v1.56.2/rclone-v1.56.2.tar.gz
 Source1  : http://localhost/cgit/projects/rclone-vendor/snapshot/rclone-vendor-1.56.2.tar.xz
