@@ -4,7 +4,7 @@
 #
 Name     : rclone
 Version  : 1.59.0
-Release  : 47
+Release  : 48
 URL      : https://github.com/rclone/rclone/releases/download/v1.59.0/rclone-v1.59.0.tar.gz
 Source0  : https://github.com/rclone/rclone/releases/download/v1.59.0/rclone-v1.59.0.tar.gz
 Source1  : http://localhost/cgit/projects/rclone-vendor/snapshot/rclone-vendor-1.59.0.tar.xz
