@@ -4,10 +4,10 @@
 # Using build pattern: make
 #
 Name     : rclone
-Version  : 1.62.2
-Release  : 63
-URL      : https://github.com/rclone/rclone/releases/download/v1.62.2/rclone-v1.62.2.tar.gz
-Source0  : https://github.com/rclone/rclone/releases/download/v1.62.2/rclone-v1.62.2.tar.gz
+Version  : 1.63.1
+Release  : 65
+URL      : https://github.com/rclone/rclone/releases/download/v1.63.1/rclone-v1.63.1.tar.gz
+Source0  : https://github.com/rclone/rclone/releases/download/v1.63.1/rclone-v1.63.1.tar.gz
 Source1  : http://localhost/cgit/projects/rclone-vendor/snapshot/rclone-vendor-1.61.1.tar.xz
 Summary  : rsync for cloud storage
 Group    : Development/Tools
@@ -21,12 +21,15 @@ BuildRequires : go
 Rclone ("rsync for cloud storage") is a command line program to sync files and directories to and from different cloud storage providers.
 
 %prep
-%setup -q -n rclone-v1.62.2
+%setup -q -n rclone-v1.63.1
 cd %{_builddir}
 tar xf %{_sourcedir}/rclone-vendor-1.61.1.tar.xz
-cd %{_builddir}/rclone-v1.62.2
+cd %{_builddir}/rclone-v1.63.1
 mkdir -p ./
-cp -r %{_builddir}/rclone-vendor-1.61.1/* %{_builddir}/rclone-v1.62.2/./
+cp -r %{_builddir}/rclone-vendor-1.61.1/* %{_builddir}/rclone-v1.63.1/./
+pushd ..
+cp -a rclone-v1.63.1 buildavx2
+popd
 
 %build
 ## build_prepend content
@@ -36,17 +39,28 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680639508
+export SOURCE_DATE_EPOCH=1691079066
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 make  %{?_smp_mflags}  -f Makefile GOFLAGS='-mod=vendor -buildmode=pie -v'
 
+pushd ../buildavx2
+## build_prepend content
+unset CLEAR_DEBUG_TERSE
+## build_prepend end
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3"
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
+make  %{?_smp_mflags}  -f Makefile GOFLAGS='-mod=vendor -buildmode=pie -v'
+popd
 
 %install
-export SOURCE_DATE_EPOCH=1680639508
+export SOURCE_DATE_EPOCH=1691079066
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/rclone
 cp %{_builddir}/rclone-v%{version}/COPYING %{buildroot}/usr/share/package-licenses/rclone/8fb789d383906a5e83d6a74149e094f8d6921812 || :
@@ -195,12 +209,16 @@ cp %{_builddir}/rclone-vendor-1.61.1/vendor/storj.io/common/LICENSE %{buildroot}
 cp %{_builddir}/rclone-vendor-1.61.1/vendor/storj.io/common/base58/LICENSE %{buildroot}/usr/share/package-licenses/rclone/df6498c1204c9432dcba1a6078f92c99d9d11505 || :
 cp %{_builddir}/rclone-vendor-1.61.1/vendor/storj.io/drpc/LICENSE %{buildroot}/usr/share/package-licenses/rclone/9770d86eee2c38c5f4359d62153286ecfe801bd4 || :
 cp %{_builddir}/rclone-vendor-1.61.1/vendor/storj.io/uplink/LICENSE %{buildroot}/usr/share/package-licenses/rclone/9770d86eee2c38c5f4359d62153286ecfe801bd4 || :
+pushd ../buildavx2/
+true_v3
+popd
 true
 ## install_append content
 install -d %{buildroot}/usr/bin/
 install -m0755 rclone %{buildroot}/usr/bin/
 install -Dpm0644 ./rclone.1 %{buildroot}/usr/share/man/man1/rclone.1
 ## install_append end
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
