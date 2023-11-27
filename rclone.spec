@@ -6,11 +6,11 @@
 # autospec commit: e661f3a625d7
 #
 Name     : rclone
-Version  : 1.64.2
-Release  : 68
-URL      : https://github.com/rclone/rclone/releases/download/v1.64.2/rclone-v1.64.2.tar.gz
-Source0  : https://github.com/rclone/rclone/releases/download/v1.64.2/rclone-v1.64.2.tar.gz
-Source1  : http://localhost/cgit/projects/rclone-vendor/snapshot/rclone-vendor-1.64.2.tar.xz
+Version  : 1.65.0
+Release  : 69
+URL      : https://github.com/rclone/rclone/releases/download/v1.65.0/rclone-v1.65.0.tar.gz
+Source0  : https://github.com/rclone/rclone/releases/download/v1.65.0/rclone-v1.65.0.tar.gz
+Source1  : http://localhost/cgit/projects/rclone-vendor/snapshot/rclone-vendor-1.65.0.tar.xz
 Summary  : rsync for cloud storage
 Group    : Development/Tools
 License  : Apache-2.0 BSD-2-Clause BSD-3-Clause ISC MIT MPL-2.0 MPL-2.0-no-copyleft-exception
@@ -51,12 +51,12 @@ man components for the rclone package.
 
 
 %prep
-%setup -q -n rclone-v1.64.2
+%setup -q -n rclone-v1.65.0
 cd %{_builddir}
-tar xf %{_sourcedir}/rclone-vendor-1.64.2.tar.xz
-cd %{_builddir}/rclone-v1.64.2
+tar xf %{_sourcedir}/rclone-vendor-1.65.0.tar.xz
+cd %{_builddir}/rclone-v1.65.0
 mkdir -p ./
-cp -r %{_builddir}/rclone-vendor-1.64.2/* %{_builddir}/rclone-v1.64.2/./
+cp -r %{_builddir}/rclone-vendor-1.65.0/* %{_builddir}/rclone-v1.65.0/./
 
 %build
 ## build_prepend content
@@ -66,7 +66,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1700258462
+export SOURCE_DATE_EPOCH=1701115527
 export GCC_IGNORE_WERROR=1
 CLEAR_INTERMEDIATE_CFLAGS="$CLEAR_INTERMEDIATE_CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 CLEAR_INTERMEDIATE_FCFLAGS="$CLEAR_INTERMEDIATE_FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
@@ -93,7 +93,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1700258462
+export SOURCE_DATE_EPOCH=1701115527
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/rclone
 cp %{_builddir}/rclone-v%{version}/COPYING %{buildroot}/usr/share/package-licenses/rclone/8fb789d383906a5e83d6a74149e094f8d6921812 || :
@@ -107,11 +107,19 @@ cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/Azure/azure-sdk-for-g
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/Azure/azure-sdk-for-go/sdk/azidentity/LICENSE.txt %{buildroot}/usr/share/package-licenses/rclone/6d474b2f4f14b1311bfdc5ce3f003bbd9bd026c6 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/Azure/azure-sdk-for-go/sdk/internal/LICENSE.txt %{buildroot}/usr/share/package-licenses/rclone/6d474b2f4f14b1311bfdc5ce3f003bbd9bd026c6 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/Azure/azure-sdk-for-go/sdk/storage/azblob/LICENSE.txt %{buildroot}/usr/share/package-licenses/rclone/eee5b07a657266ef6c5c20acee6685ac6732cd19 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/Azure/azure-sdk-for-go/sdk/storage/azfile/LICENSE.txt %{buildroot}/usr/share/package-licenses/rclone/eee5b07a657266ef6c5c20acee6685ac6732cd19 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/Azure/go-ntlmssp/LICENSE %{buildroot}/usr/share/package-licenses/rclone/90778a2b78620d46a521986f99136e44a1dde89f || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/AzureAD/microsoft-authentication-library-for-go/LICENSE %{buildroot}/usr/share/package-licenses/rclone/5c8d40f5ba076a94ba059fd1c53ad3b1e261e164 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/Max-Sum/base32768/LICENSE %{buildroot}/usr/share/package-licenses/rclone/8f51413d2595fb4510abed657da6da9056b7cd50 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/Microsoft/go-winio/LICENSE %{buildroot}/usr/share/package-licenses/rclone/11a8fec351554e8f6c3f4dac5a1f4049dd467ba8 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/ProtonMail/bcrypt/LICENSE %{buildroot}/usr/share/package-licenses/rclone/227c61f7fb8ea8766b279cdfe99c59ba946d06d9 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/ProtonMail/gluon/COPYING_NOTES.md %{buildroot}/usr/share/package-licenses/rclone/093caacdf0f935f260d47599dcc6b238ba394637 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/ProtonMail/gluon/LICENSE %{buildroot}/usr/share/package-licenses/rclone/5d1757a7245e32a988dfb618354b47da221b1469 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/ProtonMail/go-crypto/LICENSE %{buildroot}/usr/share/package-licenses/rclone/d6a5f1ecaedd723c325a2063375b3517e808a2b5 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/ProtonMail/go-mime/LICENSE %{buildroot}/usr/share/package-licenses/rclone/3f144b0e428c8c304fa0450fdb7810b932c4bf86 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/ProtonMail/go-srp/LICENSE.txt %{buildroot}/usr/share/package-licenses/rclone/2e4e68fbbb34f9beeb730718b69e9bdd0a848c0c || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/ProtonMail/gopenpgp/v2/LICENSE %{buildroot}/usr/share/package-licenses/rclone/3f144b0e428c8c304fa0450fdb7810b932c4bf86 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/PuerkitoBio/goquery/LICENSE %{buildroot}/usr/share/package-licenses/rclone/e48b84487c4e9e8dcd2c14377f7ae593f4026b34 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/Unknwon/goconfig/LICENSE %{buildroot}/usr/share/package-licenses/rclone/34774a54e4b286739f317922b31ba5eb3ec9195e || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/a8m/tree/LICENSE %{buildroot}/usr/share/package-licenses/rclone/5e179fa54e9195abd2ac3ed2fff7516ad9730bcf || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/aalpar/deheap/LICENSE.txt %{buildroot}/usr/share/package-licenses/rclone/1cddd03fee670202871bd209987552bd5bd08f2f || :
@@ -124,6 +132,7 @@ cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/atotto/clipboard/LICE
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/aws/aws-sdk-go/LICENSE.txt %{buildroot}/usr/share/package-licenses/rclone/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/aws/aws-sdk-go/internal/sync/singleflight/LICENSE %{buildroot}/usr/share/package-licenses/rclone/d6a5f1ecaedd723c325a2063375b3517e808a2b5 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/beorn7/perks/LICENSE %{buildroot}/usr/share/package-licenses/rclone/b2e4520feb0f9b51ad373256b94c3faf4c1e6871 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/bradenaw/juniper/LICENSE %{buildroot}/usr/share/package-licenses/rclone/da1da1b139dcfbff6de678608b5136165337af18 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/buengese/sgzip/GO_LICENSE %{buildroot}/usr/share/package-licenses/rclone/7f7a12bcfc16fab2522aa1a562fd3d2aee429d3b || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/buengese/sgzip/LICENSE %{buildroot}/usr/share/package-licenses/rclone/360d21b032bddd1e5793ae8ddbe5c165a6780efa || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/calebcase/tmpfile/LICENSE %{buildroot}/usr/share/package-licenses/rclone/b770d387efdd7502573c35a14fcc8454af0f1ef7 || :
@@ -134,19 +143,27 @@ cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/colinmarc/hdfs/v2/LIC
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/coreos/go-semver/LICENSE %{buildroot}/usr/share/package-licenses/rclone/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/coreos/go-systemd/LICENSE %{buildroot}/usr/share/package-licenses/rclone/172ca3bbafe312a1cf09cfff26953db2f425c28e || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/cpuguy83/go-md2man/v2/LICENSE.md %{buildroot}/usr/share/package-licenses/rclone/b7a606730713ac061594edab33cf941704b4a95c || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/cronokirby/saferith/LICENSE %{buildroot}/usr/share/package-licenses/rclone/d3146e27c5503cf4fdac4d8ca64b8b692d8fe63b || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/cronokirby/saferith/LICENSE_go %{buildroot}/usr/share/package-licenses/rclone/d6a5f1ecaedd723c325a2063375b3517e808a2b5 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/davecgh/go-spew/LICENSE %{buildroot}/usr/share/package-licenses/rclone/d2f340a01dd48b589a70f627cf7058c585a315e4 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/dop251/scsu/LICENSE %{buildroot}/usr/share/package-licenses/rclone/9236ef275fc742ec6f33c0919f30dc86647c6ea9 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/dropbox/dropbox-sdk-go-unofficial/v6/LICENSE %{buildroot}/usr/share/package-licenses/rclone/dffd9523ff0a2a713b70c269f38400c6a7ebb8b5 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/dustin/go-humanize/LICENSE %{buildroot}/usr/share/package-licenses/rclone/4b5f40487c165cf31691824a93d375fcb65ea30a || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/emersion/go-message/LICENSE %{buildroot}/usr/share/package-licenses/rclone/1f87c12b841924d8a113588f25c2dbdf51384bbb || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/emersion/go-textwrapper/LICENSE %{buildroot}/usr/share/package-licenses/rclone/7614e2869b2add4d1c01bfc77e252d9b3ae66fa4 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/emersion/go-vcard/LICENSE %{buildroot}/usr/share/package-licenses/rclone/eaad3bcaab161ee07d746dedc33ff6c4c873af05 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/flynn/noise/LICENSE %{buildroot}/usr/share/package-licenses/rclone/1a5ca95c42b95c37eb507bd547d3f2f511a6dd0f || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/gabriel-vasile/mimetype/LICENSE %{buildroot}/usr/share/package-licenses/rclone/4a06de85fbb53323c0ed1925df9bbff1bfecf459 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/gdamore/encoding/LICENSE %{buildroot}/usr/share/package-licenses/rclone/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/gdamore/tcell/v2/LICENSE %{buildroot}/usr/share/package-licenses/rclone/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/geoffgarside/ber/LICENSE %{buildroot}/usr/share/package-licenses/rclone/d6a5f1ecaedd723c325a2063375b3517e808a2b5 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/go-chi/chi/v5/LICENSE %{buildroot}/usr/share/package-licenses/rclone/134abc2fa7aa177835bdf93b124636715eab4c33 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/go-git/go-billy/v5/LICENSE %{buildroot}/usr/share/package-licenses/rclone/252aed5d0042e1b207cfa34525444999cdb54e3e || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/go-ole/go-ole/LICENSE %{buildroot}/usr/share/package-licenses/rclone/565471fdf06cfb21b7c69c5fc329a1341d5d9ad0 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/gofrs/flock/LICENSE %{buildroot}/usr/share/package-licenses/rclone/db15a847aaff2fc9cd1fe773d6858953c85fe04a || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/gogo/protobuf/LICENSE %{buildroot}/usr/share/package-licenses/rclone/06b27345acae9303e13dde9974d2b2e318b05989 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/golang-jwt/jwt/v4/LICENSE %{buildroot}/usr/share/package-licenses/rclone/5e975d829f4ea420c028ba512f8bb3e0ebaaf574 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/golang-jwt/jwt/v5/LICENSE %{buildroot}/usr/share/package-licenses/rclone/5e975d829f4ea420c028ba512f8bb3e0ebaaf574 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/golang/groupcache/LICENSE %{buildroot}/usr/share/package-licenses/rclone/172ca3bbafe312a1cf09cfff26953db2f425c28e || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/golang/protobuf/LICENSE %{buildroot}/usr/share/package-licenses/rclone/aa9b240f558caed367795f667629ccbca28f20b2 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/google/go-querystring/LICENSE %{buildroot}/usr/share/package-licenses/rclone/5d833085cd09e0a70fe9071b1f2edf6d31b91d45 || :
@@ -154,9 +171,15 @@ cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/google/s2a-go/LICENSE
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/google/uuid/LICENSE %{buildroot}/usr/share/package-licenses/rclone/08021ae73f58f423dd6e7b525e81cf2520f7619e || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/googleapis/enterprise-certificate-proxy/LICENSE %{buildroot}/usr/share/package-licenses/rclone/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/googleapis/gax-go/v2/LICENSE %{buildroot}/usr/share/package-licenses/rclone/2bda142bd58fd76f408cf18fa997d8fab0278a22 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/hanwen/go-fuse/v2/LICENSE %{buildroot}/usr/share/package-licenses/rclone/faa0aec74d351413a20e9e8f988ed1c37bf3c163 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/hashicorp/errwrap/LICENSE %{buildroot}/usr/share/package-licenses/rclone/523489384296f403da31edf8edf6f9023d328517 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/hashicorp/go-multierror/LICENSE %{buildroot}/usr/share/package-licenses/rclone/2ebe302ef4d8d257ac6f0a916285b51937a25641 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/hashicorp/go-uuid/LICENSE %{buildroot}/usr/share/package-licenses/rclone/d5e1929c645487003b881bb72bb6781922c4ec35 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/hashicorp/golang-lru/v2/LICENSE %{buildroot}/usr/share/package-licenses/rclone/90857ae97e892cea98fe28613afba3366d56bbf3 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/hashicorp/golang-lru/v2/simplelru/LICENSE_list %{buildroot}/usr/share/package-licenses/rclone/bf88cc725ad09db6991d26b4af7cc790ef52c6fb || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/henrybear327/Proton-API-Bridge/LICENSE %{buildroot}/usr/share/package-licenses/rclone/de32b3ef93bea5f0504380ed944f1ad59311ab59 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/henrybear327/go-proton-api/COPYING_NOTES.md %{buildroot}/usr/share/package-licenses/rclone/07e43fd386669cfb63ec5e79e69c3d87e0d14c7b || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/henrybear327/go-proton-api/LICENSE %{buildroot}/usr/share/package-licenses/rclone/ee607ff0add4e84408dfd490b1bd41423c5159f4 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/iguanesolutions/go-systemd/v5/LICENSE %{buildroot}/usr/share/package-licenses/rclone/db69a7e014e68367238cc08a26a1de580d89895e || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/inconshreveable/mousetrap/LICENSE %{buildroot}/usr/share/package-licenses/rclone/62446e71c226403f1a2e67d0f66ede03e3fbdd2f || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/jcmturner/aescts/v2/LICENSE %{buildroot}/usr/share/package-licenses/rclone/92170cdc034b2ff819323ff670d3b7266c8bffcd || :
@@ -167,10 +190,13 @@ cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/jcmturner/gokrb5/v8/L
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/jcmturner/rpc/v2/LICENSE %{buildroot}/usr/share/package-licenses/rclone/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/jlaffaye/ftp/LICENSE %{buildroot}/usr/share/package-licenses/rclone/f11754cdb6a138a3420443feef5d64ca5917f207 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/jmespath/go-jmespath/LICENSE %{buildroot}/usr/share/package-licenses/rclone/4052101a660a7d8343c13ada130123f75f1dd408 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/josephspurrier/goversioninfo/LICENSE %{buildroot}/usr/share/package-licenses/rclone/981213020047043b77b625a9e8234698bb3dd24f || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/json-iterator/go/LICENSE %{buildroot}/usr/share/package-licenses/rclone/810612ee8c1872b7ee4dba34c090ebd8f7491aa1 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/jtolio/eventkit/LICENSE %{buildroot}/usr/share/package-licenses/rclone/2f93c6a8ed03b9cf20bcae41907516d96dd7fcd1 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/jtolio/noiseconn/LICENSE %{buildroot}/usr/share/package-licenses/rclone/2f93c6a8ed03b9cf20bcae41907516d96dd7fcd1 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/jzelinskie/whirlpool/LICENSE %{buildroot}/usr/share/package-licenses/rclone/982be8423926a050d9494c059be0a50cd9df9fcb || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/klauspost/compress/LICENSE %{buildroot}/usr/share/package-licenses/rclone/0e8f2042647b8140e79c4eb7d233d1b39231db09 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/klauspost/compress/s2/LICENSE %{buildroot}/usr/share/package-licenses/rclone/f16709ac75899c968b46eca0f327b754a94bbe4e || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/klauspost/cpuid/v2/LICENSE %{buildroot}/usr/share/package-licenses/rclone/41a17a069904e6a10fa1b1bcf67c2e4d836937d1 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/koofr/go-httpclient/LICENSE %{buildroot}/usr/share/package-licenses/rclone/9cafe275ac14100e5ef048da7c9ebbbd6d26ccda || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/koofr/go-koofrclient/LICENSE %{buildroot}/usr/share/package-licenses/rclone/9cafe275ac14100e5ef048da7c9ebbbd6d26ccda || :
@@ -181,11 +207,19 @@ cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/lufia/plan9stats/LICE
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/mattn/go-colorable/LICENSE %{buildroot}/usr/share/package-licenses/rclone/5ca808f075931c5322193d4afd5a3370c824f810 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/mattn/go-isatty/LICENSE %{buildroot}/usr/share/package-licenses/rclone/5b53018d7f0706e49275a92d36b54cfbfbb71367 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/mattn/go-runewidth/LICENSE %{buildroot}/usr/share/package-licenses/rclone/5ca808f075931c5322193d4afd5a3370c824f810 || :
-cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/matttproud/golang_protobuf_extensions/LICENSE %{buildroot}/usr/share/package-licenses/rclone/92170cdc034b2ff819323ff670d3b7266c8bffcd || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/matttproud/golang_protobuf_extensions/v2/LICENSE %{buildroot}/usr/share/package-licenses/rclone/92170cdc034b2ff819323ff670d3b7266c8bffcd || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/minio/md5-simd/LICENSE %{buildroot}/usr/share/package-licenses/rclone/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/minio/md5-simd/LICENSE.Golang %{buildroot}/usr/share/package-licenses/rclone/d6a5f1ecaedd723c325a2063375b3517e808a2b5 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/minio/minio-go/v7/LICENSE %{buildroot}/usr/share/package-licenses/rclone/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/minio/minio-go/v7/NOTICE %{buildroot}/usr/share/package-licenses/rclone/1ab6cff82ebc6ddb590da08bf488874f0b674d64 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/minio/sha256-simd/LICENSE %{buildroot}/usr/share/package-licenses/rclone/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/mitchellh/go-homedir/LICENSE %{buildroot}/usr/share/package-licenses/rclone/5ad2002bc8d2b22e2034867d159f71ba6258e18f || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/moby/sys/mountinfo/LICENSE %{buildroot}/usr/share/package-licenses/rclone/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/modern-go/concurrent/LICENSE %{buildroot}/usr/share/package-licenses/rclone/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/modern-go/reflect2/LICENSE %{buildroot}/usr/share/package-licenses/rclone/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/ncw/go-acd/LICENSE %{buildroot}/usr/share/package-licenses/rclone/391d45842b9f73858dc098d238c442fa626fe77a || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/ncw/swift/v2/COPYING %{buildroot}/usr/share/package-licenses/rclone/8fb789d383906a5e83d6a74149e094f8d6921812 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/oracle/oci-go-sdk/v65/LICENSE.txt %{buildroot}/usr/share/package-licenses/rclone/ad1ec7585fb6b12cf33b7f140dd20d4d43c403fc || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/patrickmn/go-cache/LICENSE %{buildroot}/usr/share/package-licenses/rclone/4da388cb14535cb8d2beb61b160aab2a2043a8c0 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/pengsrc/go-shared/LICENSE %{buildroot}/usr/share/package-licenses/rclone/c70af8de765cf6b3ea8511100f570be42dfc63a3 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/pkg/browser/LICENSE %{buildroot}/usr/share/package-licenses/rclone/64a8107cababd5ee8cf663dd2188c0ff921fff0e || :
@@ -200,9 +234,13 @@ cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/prometheus/client_mod
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/prometheus/common/LICENSE %{buildroot}/usr/share/package-licenses/rclone/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/prometheus/procfs/LICENSE %{buildroot}/usr/share/package-licenses/rclone/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/putdotio/go-putio/putio/LICENSE %{buildroot}/usr/share/package-licenses/rclone/a48a884fcdfd5c46023bed86b6058508cfc7b841 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/rasky/go-xdr/LICENSE %{buildroot}/usr/share/package-licenses/rclone/dd59a81b4235f5df8d511168eaaafb30ed88bc71 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/relvacode/iso8601/LICENSE %{buildroot}/usr/share/package-licenses/rclone/14d6b9c6f7d7284121753169150406740b7470e0 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/rfjakob/eme/LICENSE %{buildroot}/usr/share/package-licenses/rclone/7b00728bec591be7fabd9a50b6509e349371ff11 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/rivo/uniseg/LICENSE.txt %{buildroot}/usr/share/package-licenses/rclone/f60d047cd34de4c91b3a045ebf117fe54b3c279e || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/rs/xid/LICENSE %{buildroot}/usr/share/package-licenses/rclone/9af8d79ca96a43a2c76c79f32c0366c0ea64fdfd || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/russross/blackfriday/v2/LICENSE.txt %{buildroot}/usr/share/package-licenses/rclone/da34754c05d40ff81f91de8c1b85ea6e5503e21d || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/ryszard/goskiplist/LICENSE %{buildroot}/usr/share/package-licenses/rclone/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/shirou/gopsutil/v3/LICENSE %{buildroot}/usr/share/package-licenses/rclone/0c40e548c3768125e9fd4c09907b2457341edef6 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/shoenig/go-m1cpu/LICENSE %{buildroot}/usr/share/package-licenses/rclone/fa7c4d75bae3a641d1f9ab5df028175bfb8a69ca || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/sirupsen/logrus/LICENSE %{buildroot}/usr/share/package-licenses/rclone/a1c7852c717fed2c9a0284ed112ea66013230da6 || :
@@ -216,6 +254,7 @@ cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/t3rm1n4l/go-mega/LICE
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/tklauser/go-sysconf/LICENSE %{buildroot}/usr/share/package-licenses/rclone/7ed5d56b3816967215df4d7cd78ca919d1998954 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/tklauser/numcpus/LICENSE %{buildroot}/usr/share/package-licenses/rclone/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/vivint/infectious/LICENSE %{buildroot}/usr/share/package-licenses/rclone/a4e91d03ec7c2d2090cbee6d780946dbfeb709a3 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/willscott/go-nfs/LICENSE %{buildroot}/usr/share/package-licenses/rclone/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/winfsp/cgofuse/LICENSE.txt %{buildroot}/usr/share/package-licenses/rclone/0980f4c6dd59a127320cf7b1cf7dc04f8cfbfba7 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/xanzy/ssh-agent/LICENSE %{buildroot}/usr/share/package-licenses/rclone/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/github.com/youmark/pkcs8/LICENSE %{buildroot}/usr/share/package-licenses/rclone/7a68d66c33fbdaa3e1a4d562ea7e47da5ad027ba || :
@@ -228,6 +267,7 @@ cp %{_builddir}/rclone-vendor-%{version}/vendor/goftp.io/server/v2/LICENSE %{bui
 cp %{_builddir}/rclone-vendor-%{version}/vendor/golang.org/x/crypto/LICENSE %{buildroot}/usr/share/package-licenses/rclone/d6a5f1ecaedd723c325a2063375b3517e808a2b5 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/golang.org/x/exp/LICENSE %{buildroot}/usr/share/package-licenses/rclone/d6a5f1ecaedd723c325a2063375b3517e808a2b5 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/golang.org/x/mobile/LICENSE %{buildroot}/usr/share/package-licenses/rclone/d6a5f1ecaedd723c325a2063375b3517e808a2b5 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/golang.org/x/mod/LICENSE %{buildroot}/usr/share/package-licenses/rclone/d6a5f1ecaedd723c325a2063375b3517e808a2b5 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/golang.org/x/net/LICENSE %{buildroot}/usr/share/package-licenses/rclone/d6a5f1ecaedd723c325a2063375b3517e808a2b5 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/golang.org/x/oauth2/LICENSE %{buildroot}/usr/share/package-licenses/rclone/d6a5f1ecaedd723c325a2063375b3517e808a2b5 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/golang.org/x/sync/LICENSE %{buildroot}/usr/share/package-licenses/rclone/d6a5f1ecaedd723c325a2063375b3517e808a2b5 || :
@@ -235,12 +275,15 @@ cp %{_builddir}/rclone-vendor-%{version}/vendor/golang.org/x/sys/LICENSE %{build
 cp %{_builddir}/rclone-vendor-%{version}/vendor/golang.org/x/term/LICENSE %{buildroot}/usr/share/package-licenses/rclone/d6a5f1ecaedd723c325a2063375b3517e808a2b5 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/golang.org/x/text/LICENSE %{buildroot}/usr/share/package-licenses/rclone/d6a5f1ecaedd723c325a2063375b3517e808a2b5 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/golang.org/x/time/LICENSE %{buildroot}/usr/share/package-licenses/rclone/d6a5f1ecaedd723c325a2063375b3517e808a2b5 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/golang.org/x/tools/LICENSE %{buildroot}/usr/share/package-licenses/rclone/d6a5f1ecaedd723c325a2063375b3517e808a2b5 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/google.golang.org/api/LICENSE %{buildroot}/usr/share/package-licenses/rclone/ab32a5c14ccc0a6d38e173568a5577493e3f6870 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/google.golang.org/api/internal/third_party/uritemplates/LICENSE %{buildroot}/usr/share/package-licenses/rclone/475b0ccf682da5e05e3aa1eb6146b30132ae717d || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/google.golang.org/appengine/LICENSE %{buildroot}/usr/share/package-licenses/rclone/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/google.golang.org/genproto/googleapis/rpc/LICENSE %{buildroot}/usr/share/package-licenses/rclone/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/google.golang.org/grpc/LICENSE %{buildroot}/usr/share/package-licenses/rclone/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/google.golang.org/protobuf/LICENSE %{buildroot}/usr/share/package-licenses/rclone/74850a25a5319bdddc0d998eb8926c18bada282b || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/gopkg.in/ini.v1/LICENSE %{buildroot}/usr/share/package-licenses/rclone/e4ef54f2c30670f950d5e196afa09c88d8ef0c8a || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/gopkg.in/validator.v2/LICENSE %{buildroot}/usr/share/package-licenses/rclone/3d9ca858ae047e05c8c031e24b41aea21417fc2a || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/gopkg.in/yaml.v2/LICENSE %{buildroot}/usr/share/package-licenses/rclone/92170cdc034b2ff819323ff670d3b7266c8bffcd || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/gopkg.in/yaml.v2/LICENSE.libyaml %{buildroot}/usr/share/package-licenses/rclone/ad00ce7340d89dc13ccc59920ef75cb55af5b164 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/gopkg.in/yaml.v2/NOTICE %{buildroot}/usr/share/package-licenses/rclone/9522d95b2b9b284285cc3fb6ecc445aa3ee5e785 || :
@@ -250,6 +293,7 @@ cp %{_builddir}/rclone-vendor-%{version}/vendor/storj.io/common/LICENSE %{buildr
 cp %{_builddir}/rclone-vendor-%{version}/vendor/storj.io/common/base58/LICENSE %{buildroot}/usr/share/package-licenses/rclone/df6498c1204c9432dcba1a6078f92c99d9d11505 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/storj.io/common/internal/hmacsha512/GO_LICENSE %{buildroot}/usr/share/package-licenses/rclone/d6a5f1ecaedd723c325a2063375b3517e808a2b5 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/storj.io/drpc/LICENSE %{buildroot}/usr/share/package-licenses/rclone/9770d86eee2c38c5f4359d62153286ecfe801bd4 || :
+cp %{_builddir}/rclone-vendor-%{version}/vendor/storj.io/picobuf/LICENSE %{buildroot}/usr/share/package-licenses/rclone/39eb92a86770c0c7ccf31ded6e3dd35c67455490 || :
 cp %{_builddir}/rclone-vendor-%{version}/vendor/storj.io/uplink/LICENSE %{buildroot}/usr/share/package-licenses/rclone/9770d86eee2c38c5f4359d62153286ecfe801bd4 || :
 true
 ## install_append content
@@ -270,7 +314,9 @@ install -Dpm0644 ./rclone.1 %{buildroot}/usr/share/man/man1/rclone.1
 /usr/share/package-licenses/rclone/0146be22c720ce2731a03efa6ba1d97084293b06
 /usr/share/package-licenses/rclone/04319952ed7b0f3b3a70ae4d5d9f954317b8f970
 /usr/share/package-licenses/rclone/06b27345acae9303e13dde9974d2b2e318b05989
+/usr/share/package-licenses/rclone/07e43fd386669cfb63ec5e79e69c3d87e0d14c7b
 /usr/share/package-licenses/rclone/08021ae73f58f423dd6e7b525e81cf2520f7619e
+/usr/share/package-licenses/rclone/093caacdf0f935f260d47599dcc6b238ba394637
 /usr/share/package-licenses/rclone/0980f4c6dd59a127320cf7b1cf7dc04f8cfbfba7
 /usr/share/package-licenses/rclone/0c40e548c3768125e9fd4c09907b2457341edef6
 /usr/share/package-licenses/rclone/0e8f2042647b8140e79c4eb7d233d1b39231db09
@@ -279,23 +325,34 @@ install -Dpm0644 ./rclone.1 %{buildroot}/usr/share/man/man1/rclone.1
 /usr/share/package-licenses/rclone/11a8fec351554e8f6c3f4dac5a1f4049dd467ba8
 /usr/share/package-licenses/rclone/134abc2fa7aa177835bdf93b124636715eab4c33
 /usr/share/package-licenses/rclone/13f93ed9ec15f4f9d608e7a417e1bae94645bf2f
+/usr/share/package-licenses/rclone/14d6b9c6f7d7284121753169150406740b7470e0
 /usr/share/package-licenses/rclone/172ca3bbafe312a1cf09cfff26953db2f425c28e
+/usr/share/package-licenses/rclone/1a5ca95c42b95c37eb507bd547d3f2f511a6dd0f
+/usr/share/package-licenses/rclone/1ab6cff82ebc6ddb590da08bf488874f0b674d64
 /usr/share/package-licenses/rclone/1cddd03fee670202871bd209987552bd5bd08f2f
+/usr/share/package-licenses/rclone/1f87c12b841924d8a113588f25c2dbdf51384bbb
+/usr/share/package-licenses/rclone/227c61f7fb8ea8766b279cdfe99c59ba946d06d9
 /usr/share/package-licenses/rclone/2510861d72bd971c91b53a5c5fc291e2971c669e
+/usr/share/package-licenses/rclone/252aed5d0042e1b207cfa34525444999cdb54e3e
 /usr/share/package-licenses/rclone/2a80ddae1870dbf22e867ca2dcf65f98f896bda7
 /usr/share/package-licenses/rclone/2b8b815229aa8a61e483fb4ba0588b8b6c491890
 /usr/share/package-licenses/rclone/2bda142bd58fd76f408cf18fa997d8fab0278a22
+/usr/share/package-licenses/rclone/2e4e68fbbb34f9beeb730718b69e9bdd0a848c0c
 /usr/share/package-licenses/rclone/2ebe302ef4d8d257ac6f0a916285b51937a25641
 /usr/share/package-licenses/rclone/2f93c6a8ed03b9cf20bcae41907516d96dd7fcd1
 /usr/share/package-licenses/rclone/34774a54e4b286739f317922b31ba5eb3ec9195e
 /usr/share/package-licenses/rclone/360d21b032bddd1e5793ae8ddbe5c165a6780efa
 /usr/share/package-licenses/rclone/391d45842b9f73858dc098d238c442fa626fe77a
+/usr/share/package-licenses/rclone/39eb92a86770c0c7ccf31ded6e3dd35c67455490
+/usr/share/package-licenses/rclone/3d9ca858ae047e05c8c031e24b41aea21417fc2a
 /usr/share/package-licenses/rclone/3db0b48008abcd20f9be0bf8d2deb8cae2e98aa7
+/usr/share/package-licenses/rclone/3f144b0e428c8c304fa0450fdb7810b932c4bf86
 /usr/share/package-licenses/rclone/4052101a660a7d8343c13ada130123f75f1dd408
 /usr/share/package-licenses/rclone/41a17a069904e6a10fa1b1bcf67c2e4d836937d1
 /usr/share/package-licenses/rclone/45dba568c8147199e2f288e2f7c0493f28d6fe7f
 /usr/share/package-licenses/rclone/475b0ccf682da5e05e3aa1eb6146b30132ae717d
 /usr/share/package-licenses/rclone/4a06de85fbb53323c0ed1925df9bbff1bfecf459
+/usr/share/package-licenses/rclone/4b5f40487c165cf31691824a93d375fcb65ea30a
 /usr/share/package-licenses/rclone/4da388cb14535cb8d2beb61b160aab2a2043a8c0
 /usr/share/package-licenses/rclone/523489384296f403da31edf8edf6f9023d328517
 /usr/share/package-licenses/rclone/5485efdb8b4f1167116feb7f4df9798329000329
@@ -305,6 +362,7 @@ install -Dpm0644 ./rclone.1 %{buildroot}/usr/share/man/man1/rclone.1
 /usr/share/package-licenses/rclone/5b53018d7f0706e49275a92d36b54cfbfbb71367
 /usr/share/package-licenses/rclone/5c8d40f5ba076a94ba059fd1c53ad3b1e261e164
 /usr/share/package-licenses/rclone/5ca808f075931c5322193d4afd5a3370c824f810
+/usr/share/package-licenses/rclone/5d1757a7245e32a988dfb618354b47da221b1469
 /usr/share/package-licenses/rclone/5d833085cd09e0a70fe9071b1f2edf6d31b91d45
 /usr/share/package-licenses/rclone/5e179fa54e9195abd2ac3ed2fff7516ad9730bcf
 /usr/share/package-licenses/rclone/5e975d829f4ea420c028ba512f8bb3e0ebaaf574
@@ -316,6 +374,7 @@ install -Dpm0644 ./rclone.1 %{buildroot}/usr/share/man/man1/rclone.1
 /usr/share/package-licenses/rclone/6df09dff6c2398859a6546f84451715f3a01c2cd
 /usr/share/package-licenses/rclone/7041cad2f2913b4fa88ac10e4b9166a9647e34ea
 /usr/share/package-licenses/rclone/74850a25a5319bdddc0d998eb8926c18bada282b
+/usr/share/package-licenses/rclone/7614e2869b2add4d1c01bfc77e252d9b3ae66fa4
 /usr/share/package-licenses/rclone/7a68d66c33fbdaa3e1a4d562ea7e47da5ad027ba
 /usr/share/package-licenses/rclone/7b00728bec591be7fabd9a50b6509e349371ff11
 /usr/share/package-licenses/rclone/7be82c1a81e7197640a88df91dc82d64b77c7acd
@@ -323,16 +382,20 @@ install -Dpm0644 ./rclone.1 %{buildroot}/usr/share/man/man1/rclone.1
 /usr/share/package-licenses/rclone/7df059597099bb7dcf25d2a9aedfaf4465f72d8d
 /usr/share/package-licenses/rclone/7ed5d56b3816967215df4d7cd78ca919d1998954
 /usr/share/package-licenses/rclone/7f7a12bcfc16fab2522aa1a562fd3d2aee429d3b
+/usr/share/package-licenses/rclone/810612ee8c1872b7ee4dba34c090ebd8f7491aa1
 /usr/share/package-licenses/rclone/88b150e4e0f2318a6316840ed631fb2cc62d5fcc
 /usr/share/package-licenses/rclone/892204393ca075d09c8b1c1d880aba1ae0a2b805
 /usr/share/package-licenses/rclone/8f51413d2595fb4510abed657da6da9056b7cd50
 /usr/share/package-licenses/rclone/8fb789d383906a5e83d6a74149e094f8d6921812
 /usr/share/package-licenses/rclone/90778a2b78620d46a521986f99136e44a1dde89f
+/usr/share/package-licenses/rclone/90857ae97e892cea98fe28613afba3366d56bbf3
 /usr/share/package-licenses/rclone/92170cdc034b2ff819323ff670d3b7266c8bffcd
 /usr/share/package-licenses/rclone/9236ef275fc742ec6f33c0919f30dc86647c6ea9
 /usr/share/package-licenses/rclone/9522d95b2b9b284285cc3fb6ecc445aa3ee5e785
 /usr/share/package-licenses/rclone/9770d86eee2c38c5f4359d62153286ecfe801bd4
+/usr/share/package-licenses/rclone/981213020047043b77b625a9e8234698bb3dd24f
 /usr/share/package-licenses/rclone/982be8423926a050d9494c059be0a50cd9df9fcb
+/usr/share/package-licenses/rclone/9af8d79ca96a43a2c76c79f32c0366c0ea64fdfd
 /usr/share/package-licenses/rclone/9c1bedc0d42f24c24a1bd266f3ce101a4b0579fc
 /usr/share/package-licenses/rclone/9cafe275ac14100e5ef048da7c9ebbbd6d26ccda
 /usr/share/package-licenses/rclone/a1c7852c717fed2c9a0284ed112ea66013230da6
@@ -343,6 +406,7 @@ install -Dpm0644 ./rclone.1 %{buildroot}/usr/share/man/man1/rclone.1
 /usr/share/package-licenses/rclone/ab32a5c14ccc0a6d38e173568a5577493e3f6870
 /usr/share/package-licenses/rclone/ace53a5dfc4d77db3b8c7c525c02169aa7b7a748
 /usr/share/package-licenses/rclone/ad00ce7340d89dc13ccc59920ef75cb55af5b164
+/usr/share/package-licenses/rclone/ad1ec7585fb6b12cf33b7f140dd20d4d43c403fc
 /usr/share/package-licenses/rclone/b2e4520feb0f9b51ad373256b94c3faf4c1e6871
 /usr/share/package-licenses/rclone/b3c86ae465b21f7323059db335158b48187731c7
 /usr/share/package-licenses/rclone/b74b3b31bc15ad5e94fc1947d682aa3d84132fce
@@ -351,24 +415,35 @@ install -Dpm0644 ./rclone.1 %{buildroot}/usr/share/man/man1/rclone.1
 /usr/share/package-licenses/rclone/b9061705ec712d183d4e81fe1ec8bccfd5439c0f
 /usr/share/package-licenses/rclone/bad1f93907dee00771bdd5c456190987805bdf12
 /usr/share/package-licenses/rclone/bd0c1824990272e8c3ba94c2b3265efd96ebe359
+/usr/share/package-licenses/rclone/bf88cc725ad09db6991d26b4af7cc790ef52c6fb
 /usr/share/package-licenses/rclone/c0f4ffe120079028c20033cf13619b9f52434c22
 /usr/share/package-licenses/rclone/c70af8de765cf6b3ea8511100f570be42dfc63a3
 /usr/share/package-licenses/rclone/c7feacb4667f8c63c89e2eeeb9a913bd3ced8ac2
 /usr/share/package-licenses/rclone/cd3e4d932cee20da681e6b3bee8139cb4f734034
 /usr/share/package-licenses/rclone/d22157abc0fc0b4ae96380c09528e23cf77290a9
 /usr/share/package-licenses/rclone/d2f340a01dd48b589a70f627cf7058c585a315e4
+/usr/share/package-licenses/rclone/d3146e27c5503cf4fdac4d8ca64b8b692d8fe63b
 /usr/share/package-licenses/rclone/d5e1929c645487003b881bb72bb6781922c4ec35
 /usr/share/package-licenses/rclone/d6a5f1ecaedd723c325a2063375b3517e808a2b5
 /usr/share/package-licenses/rclone/d6cceeb24c4b5c8b7fbc5a1d7cb5fd5770580895
+/usr/share/package-licenses/rclone/da1da1b139dcfbff6de678608b5136165337af18
 /usr/share/package-licenses/rclone/da34754c05d40ff81f91de8c1b85ea6e5503e21d
 /usr/share/package-licenses/rclone/db15a847aaff2fc9cd1fe773d6858953c85fe04a
 /usr/share/package-licenses/rclone/db69a7e014e68367238cc08a26a1de580d89895e
+/usr/share/package-licenses/rclone/dd59a81b4235f5df8d511168eaaafb30ed88bc71
+/usr/share/package-licenses/rclone/de32b3ef93bea5f0504380ed944f1ad59311ab59
 /usr/share/package-licenses/rclone/df6498c1204c9432dcba1a6078f92c99d9d11505
 /usr/share/package-licenses/rclone/dffd9523ff0a2a713b70c269f38400c6a7ebb8b5
+/usr/share/package-licenses/rclone/e48b84487c4e9e8dcd2c14377f7ae593f4026b34
+/usr/share/package-licenses/rclone/e4ef54f2c30670f950d5e196afa09c88d8ef0c8a
+/usr/share/package-licenses/rclone/eaad3bcaab161ee07d746dedc33ff6c4c873af05
+/usr/share/package-licenses/rclone/ee607ff0add4e84408dfd490b1bd41423c5159f4
 /usr/share/package-licenses/rclone/eee5b07a657266ef6c5c20acee6685ac6732cd19
 /usr/share/package-licenses/rclone/f11754cdb6a138a3420443feef5d64ca5917f207
+/usr/share/package-licenses/rclone/f16709ac75899c968b46eca0f327b754a94bbe4e
 /usr/share/package-licenses/rclone/f60d047cd34de4c91b3a045ebf117fe54b3c279e
 /usr/share/package-licenses/rclone/fa7c4d75bae3a641d1f9ab5df028175bfb8a69ca
+/usr/share/package-licenses/rclone/faa0aec74d351413a20e9e8f988ed1c37bf3c163
 /usr/share/package-licenses/rclone/fd6460234f122a19f21affb6d6885269340b9176
 
 %files man
